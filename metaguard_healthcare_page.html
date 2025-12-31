@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Solutions - Metaguard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header/Navigation */
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 1rem 0;
+            min-width: 200px;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #475569;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8fafc;
+            color: #3b82f6;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #0f172a;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #0d7377;
+        }
+
+        .intro-text p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .intro-image {
+            background: linear-gradient(135deg, #0d737720 0%, #14FFEC20 100%);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* Solutions Grid */
+        .solutions-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            color: #0d7377;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #0d7377;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(13, 115, 119, 0.2);
+        }
+
+        .solution-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .solution-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .solution-card ul {
+            list-style: none;
+            color: #555;
+        }
+
+        .solution-card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .solution-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0d7377;
+            font-weight: bold;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .benefit-item p {
+            color: #666;
+        }
+
+        /* Compliance Section */
+        .compliance-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0d737710 0%, #14FFEC10 100%);
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .compliance-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .compliance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(13, 115, 119, 0.15);
+        }
+
+        .compliance-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .compliance-card h3 {
+            color: #0d7377;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .compliance-card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Use Cases */
+        .use-cases-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .use-case-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #0d7377;
+        }
+
+        .use-case-card h3 {
+            color: #0d7377;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .use-case-card p {
+            color: #666;
+        }
+
+        /* Features Highlight */
+        .features-highlight {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0d7377 0%, #14FFEC 100%);
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-box .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #0d7377;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0d7377 0%, #14FFEC 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(13, 115, 119, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #0d7377;
+            border: 2px solid #0d7377;
+        }
+
+        .btn-secondary:hover {
+            background: #0d7377;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: white;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            .intro-content {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-text h2 {
+                font-size: 2em;
+            }
+
+            .section-title h2 {
+                font-size: 2em;
+            }
+
+            .cta-section h2 {
+                font-size: 2em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="home.html" class="logo">
+                <div class="logo-icon">M</div>
+                MetaGuard
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">Products</a>
+                    <div class="dropdown-menu">
+                        <a href="smart_attendance_page.html">Smart Attendance</a>
+                        <a href="visitor_management_page.html">Visitor Management</a>
+                        <a href="transport_management_page.html">Transport Management</a>
+                        <a href="cashless_payments_page.html">Cashless Campus</a>
+                        <a href="library_management_page.html">Library Management</a>
+                        <a href="business_intelligence_suite.html">Complete Suite</a>
+                    </div>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="#">Industries</a>
+                    <div class="dropdown-menu">
+                        <a href="metaguard_education_page.html">Education</a>
+                        <a href="metaguard_corporate_page.html">Corporates</a>
+                        <a href="metaguard_healthcare_page.html">Healthcare</a>
+                        <a href="#">Government</a>
+                    </div>
+                </li>
+                <li><a href="#">Case Studies</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#">Blog</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">API Reference</a>
+                        <a href="#">Videos & Webinars</a>
+                    </div>
+                </li>
+                <li><a href="#" class="nav-cta">Get Started</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Transforming Healthcare Management</h2>
+                    <p>Healthcare facilities face unique challenges in managing staff, patients, visitors, and critical
+                        assets while maintaining the highest standards of security and compliance. Metaguard delivers
+                        specialized AI-powered solutions designed exclusively for healthcare environments.</p>
+                    <p>Our comprehensive suite helps hospitals, clinics, and medical facilities streamline operations,
+                        enhance patient safety, ensure regulatory compliance, and optimize resource utilization.</p>
+                    <p>From small clinics to multi-specialty hospitals, we empower healthcare organizations to focus on
+                        what matters most—delivering exceptional patient care.</p>
+                </div>
+                <div class="intro-image">
+                    <div style="background: white; padding: 60px; border-radius: 10px; font-size: 100px;">🏥</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Specialized Healthcare Solutions</h2>
+                <p>Comprehensive technology built for healthcare excellence</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">⏰</div>
+                    <h3>Staff Attendance & Rostering</h3>
+                    <p>Advanced biometric attendance with shift management for medical staff</p>
+                    <ul>
+                        <li>24/7 shift scheduling</li>
+                        <li>Doctor & nurse duty rosters</li>
+                        <li>On-call management</li>
+                        <li>Leave & replacement tracking</li>
+                        <li>Overtime calculation</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">👥</div>
+                    <h3>Patient & Visitor Management</h3>
+                    <p>Secure visitor tracking with patient safety protocols</p>
+                    <ul>
+                        <li>Digital visitor registration</li>
+                        <li>Patient visitor restrictions</li>
+                        <li>ICU/isolation area controls</li>
+                        <li>Emergency contact alerts</li>
+                        <li>Infection control compliance</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🚪</div>
+                    <h3>Access Control & Security</h3>
+                    <p>Multi-level access management for sensitive medical areas</p>
+                    <ul>
+                        <li>Role-based access control</li>
+                        <li>OT & ICU restrictions</li>
+                        <li>Pharmacy & drug room security</li>
+                        <li>CCTV integration</li>
+                        <li>Emergency override protocols</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🚑</div>
+                    <h3>Ambulance Fleet Management</h3>
+                    <p>GPS-enabled ambulance tracking and dispatch system</p>
+                    <ul>
+                        <li>Real-time vehicle tracking</li>
+                        <li>Route optimization</li>
+                        <li>Driver management</li>
+                        <li>Emergency dispatch</li>
+                        <li>Maintenance scheduling</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">📦</div>
+                    <h3>Medical Asset Tracking</h3>
+                    <p>RFID-based tracking for medical equipment and devices</p>
+                    <ul>
+                        <li>Equipment location tracking</li>
+                        <li>Maintenance scheduling</li>
+                        <li>Calibration reminders</li>
+                        <li>Inventory management</li>
+                        <li>Usage analytics</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">💊</div>
+                    <h3>Pharmacy Management</h3>
+                    <p>Digital tracking for medicines and pharmaceutical inventory</p>
+                    <ul>
+                        <li>Medicine stock tracking</li>
+                        <li>Expiry date alerts</li>
+                        <li>Automated reordering</li>
+                        <li>Batch tracking</li>
+                        <li>Regulatory compliance</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🍽️</div>
+                    <h3>Cafeteria & Diet Management</h3>
+                    <p>Cashless cafeteria with patient diet tracking integration</p>
+                    <ul>
+                        <li>Digital payment system</li>
+                        <li>Patient diet orders</li>
+                        <li>Menu management</li>
+                        <li>Nutritional tracking</li>
+                        <li>Staff meal management</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🌡️</div>
+                    <h3>Temperature Monitoring</h3>
+                    <p>Automated monitoring for blood banks, labs, and storage areas</p>
+                    <ul>
+                        <li>Real-time temperature tracking</li>
+                        <li>Automatic alerts</li>
+                        <li>Compliance reporting</li>
+                        <li>Historical data logs</li>
+                        <li>Multiple sensor support</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🔬</div>
+                    <h3>Laboratory Management</h3>
+                    <p>Sample tracking and lab equipment management system</p>
+                    <ul>
+                        <li>Sample registration</li>
+                        <li>Test tracking</li>
+                        <li>Equipment calibration</li>
+                        <li>Result management</li>
+                        <li>Quality control</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Healthcare Compliance & Standards</h2>
+                <p>Built to meet regulatory requirements and industry standards</p>
+            </div>
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <div class="icon">✓</div>
+                    <h3>HIPAA Compliant</h3>
+                    <p>Data protection and privacy standards for patient information</p>
+                </div>
+
+                <div class="compliance-card">
+                    <div class="icon">🔒</div>
+                    <h3>Data Security</h3>
+                    <p>End-to-end encryption and secure data storage protocols</p>
+                </div>
+
+                <div class="compliance-card">
+                    <div class="icon">📋</div>
+                    <h3>NABH Standards</h3>
+                    <p>Compliance with National Accreditation Board standards</p>
+                </div>
+
+                <div class="compliance-card">
+                    <div class="icon">🏥</div>
+                    <h3>JCI Accreditation</h3>
+                    <p>Support for Joint Commission International standards</p>
+                </div>
+
+                <div class="compliance-card">
+                    <div class="icon">📊</div>
+                    <h3>Audit Trails</h3>
+                    <p>Complete activity logging for regulatory audits</p>
+                </div>
+
+                <div class="compliance-card">
+                    <div class="icon">⚕️</div>
+                    <h3>Clinical Protocols</h3>
+                    <p>Adherence to medical and safety protocols</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefits for Healthcare Facilities</h2>
+                <p>Measurable improvements in operations and patient care</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>Enhanced Patient Safety</h3>
+                    <p>Multi-layer security systems protect patients and staff</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Operational Efficiency</h3>
+                    <p>Automate administrative tasks and reduce paperwork</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Resource Optimization</h3>
+                    <p>Better utilization of staff, equipment, and facilities</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Cost Reduction</h3>
+                    <p>Reduce operational costs through automation and optimization</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Real-Time Insights</h3>
+                    <p>Data-driven decision making with comprehensive analytics</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <h3>Regulatory Compliance</h3>
+                    <p>Stay compliant with healthcare regulations and standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Highlight -->
+    <section class="features-highlight">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Why Healthcare Facilities Choose Metaguard</h2>
+                <p style="color: white; opacity: 0.9;">Industry-specific features designed for healthcare</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="icon">🔄</div>
+                    <h3>24/7 Operation</h3>
+                    <p>Reliable systems built for round-the-clock healthcare environments</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="icon">⚕️</div>
+                    <h3>Medical Focus</h3>
+                    <p>Purpose-built for healthcare workflows and protocols</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="icon">🔗</div>
+                    <h3>HMS Integration</h3>
+                    <p>Seamless integration with Hospital Management Systems</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="icon">📱</div>
+                    <h3>Mobile Access</h3>
+                    <p>Mobile apps for doctors, nurses, and administrators</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Healthcare Facility Types</h2>
+                <p>Solutions tailored for different healthcare settings</p>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <h3>Multi-Specialty Hospitals</h3>
+                    <p>Complete facility management with department-wise access control, staff rostering, and patient
+                        visitor management.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>Clinics & Nursing Homes</h3>
+                    <p>Simplified operations with patient management, staff attendance, and basic security features.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>Diagnostic Centers</h3>
+                    <p>Laboratory management with sample tracking, equipment monitoring, and result management systems.
+                    </p>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>Specialty Hospitals</h3>
+                    <p>Focused solutions for cardiac, cancer, orthopedic, and other specialty healthcare facilities.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>Medical Colleges</h3>
+                    <p>Combined hospital and educational institution management with student and patient tracking.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>Rehabilitation Centers</h3>
+                    <p>Patient monitoring, therapy scheduling, and long-term care management systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Elevate Your Healthcare Facility?</h2>
+            <p>Join leading hospitals and healthcare providers who trust Metaguard</p>
+            <div class="cta-buttons">
+                <a href="/request-demo" class="btn btn-primary">Schedule a Demo</a>
+                <a href="/contact" class="btn btn-secondary">Contact Healthcare Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>MetaGuard</h3>
+                <p>AI-powered vision intelligence that transforms surveillance into actionable business insights.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+                <p style="font-size: 0.875rem; margin-top: 1rem;">Get the latest news, articles, and resources delivered
+                    weekly.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Products</h4>
+                <ul class="footer-links">
+                    <li><a href="smart_attendance_page.html">Smart Attendance</a></li>
+                    <li><a href="visitor_management_page.html">Visitor Management</a></li>
+                    <li><a href="transport_management_page.html">Transport Management</a></li>
+                    <li><a href="cashless_payments_page.html">Cashless Campus</a></li>
+                    <li><a href="library_management_page.html">Library Management</a></li>
+                    <li><a href="business_intelligence_suite.html">Complete Suite</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <ul class="footer-links">
+                    <li><a href="metaguard_education_page.html">Education</a></li>
+                    <li><a href="metaguard_corporate_page.html">Corporates</a></li>
+                    <li><a href="metaguard_healthcare_page.html">Healthcare</a></li>
+                    <li><a href="#">Government</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Videos & Webinars</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Download Brochure</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 MetaGuard. All rights reserved. | Security & Compliance | Privacy Policy | Terms of Service
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

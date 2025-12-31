@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Inventory Management System | Metaguard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation */
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 1rem 0;
+            min-width: 200px;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #475569;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8fafc;
+            color: #3b82f6;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #0f172a;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(139, 92, 246, 0.15), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: #cbd5e1;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .hero .tagline {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .accuracy-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 20px 0;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Problems Section */
+        .problems {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #ef4444;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card i {
+            font-size: 48px;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Solution Overview */
+        .solution-overview {
+            background: white;
+        }
+
+        .solution-highlight {
+            background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%);
+            padding: 60px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .solution-highlight h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .solution-highlight p {
+            font-size: 20px;
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        .case-study-card {
+            background: white;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .case-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .case-header h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .case-header p {
+            font-size: 18px;
+            color: #64748b;
+        }
+
+        .case-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .challenge,
+        .solution {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .challenge {
+            border-left: 4px solid #ef4444;
+        }
+
+        .solution {
+            border-left: 4px solid #10b981;
+        }
+
+        .challenge h4,
+        .solution h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge h4 {
+            color: #dc2626;
+        }
+
+        .solution h4 {
+            color: #059669;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 4px solid #10b981;
+        }
+
+        .result-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Core Modules */
+        .core-modules {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+        }
+
+        .core-modules .section-header h2,
+        .core-modules .section-header p {
+            color: white;
+        }
+
+        .core-modules .section-header p {
+            color: #cbd5e1;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .module-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .module-icon i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .module-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .module-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .module-features {
+            list-style: none;
+        }
+
+        .module-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #cbd5e1;
+            font-size: 15px;
+        }
+
+        .module-features li i {
+            color: #22c55e;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* Benefits */
+        .benefits {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 4px solid #10b981;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .benefit-card i {
+            font-size: 48px;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Features */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card i {
+            font-size: 48px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #e0e7ff;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: #3b82f6;
+        }
+
+        .cta-section .btn-primary:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: white;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .subtitle {
+                font-size: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .case-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="home.html" class="logo">
+                <div class="logo-icon">M</div>
+                MetaGuard
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">Products</a>
+                    <div class="dropdown-menu">
+                        <a href="smart_attendance_page.html">Smart Attendance</a>
+                        <a href="visitor_management_page.html">Visitor Management</a>
+                        <a href="transport_management_page.html">Transport Management</a>
+                        <a href="cashless_payments_page.html">Cashless Campus</a>
+                        <a href="library_management_page.html">Library Management</a>
+                        <a href="business_intelligence_suite.html">Complete Suite</a>
+                    </div>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="#">Industries</a>
+                    <div class="dropdown-menu">
+                        <a href="metaguard_education_page.html">Education</a>
+                        <a href="metaguard_corporate_page.html">Corporates</a>
+                        <a href="metaguard_healthcare_page.html">Healthcare</a>
+                        <a href="#">Government</a>
+                    </div>
+                </li>
+                <li><a href="#">Case Studies</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#">Blog</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">API Reference</a>
+                        <a href="#">Videos & Webinars</a>
+                    </div>
+                </li>
+                <li><a href="#" class="nav-cta">Get Started</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content animate-in">
+            <h1>Eliminate Manual Errors<br>With Smart Inventory Control</h1>
+            <p class="subtitle">Cloud-Based Inventory & Consumption Tracking System</p>
+            <p class="tagline">Built for educational institutions, food contractors, and enterprise cafeterias. Track
+                stock, prevent wastage, and forecast needs with 95% accuracy.</p>
+
+            <div class="accuracy-badge">
+                <i class="fas fa-chart-line"></i> 95% Forecasting Accuracy in 60 Days
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#demo" class="btn-primary">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </a>
+                <a href="#modules" class="btn-secondary">
+                    <i class="fas fa-cubes"></i> Explore Modules
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems">
+        <div class="container">
+            <div class="section-header">
+                <h2>Common Inventory Challenges</h2>
+                <p>If you operate canteens, hostels, or food services across campuses</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <i class="fas fa-eye-slash"></i>
+                    <h3>No Visibility</h3>
+                    <p>Can't see what's in stock across multiple locations. No idea what's expiring soon or what needs
+                        urgent restocking.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-trash"></i>
+                    <h3>Food Wastage</h3>
+                    <p>Overstock of perishables leads to spoilage. Understock causes menu changes and dissatisfied
+                        customers. No data to optimize.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Inaccurate Costing</h3>
+                    <p>No link between meals served and actual ingredient consumption. Can't calculate true cost per
+                        plate or identify profit leaks.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Manual Records</h3>
+                    <p>Dependency on Excel sheets and paper registers. Data errors, missing entries, and impossible to
+                        get real-time reports.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Supply Chain Chaos</h3>
+                    <p>Untracked material movement between central warehouse and outlets. No approval workflow. Mystery
+                        shortages and pilferage.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>No Forecasting</h3>
+                    <p>Ordering based on guesswork. No historical data to predict requirements. Either overstocking or
+                        stock-outs every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Overview -->
+    <section class="solution-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Metaguard Solution</h2>
+                <p>Complete inventory management ecosystem</p>
+            </div>
+
+            <div class="solution-highlight">
+                <h3>Cloud-Based, Modular System</h3>
+                <p>Built specifically for educational institutions, food contractors, and enterprise cafeterias. Track
+                    centralized stock, per-location inventory, consumption, and costs—all in real-time with automated
+                    forecasting and wastage alerts.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-cloud" style="color: #3b82f6;"></i>
+                    <h3>Cloud-Based</h3>
+                    <p>Access from anywhere. Real-time sync across all locations. No local server needed.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-puzzle-piece" style="color: #3b82f6;"></i>
+                    <h3>Modular Design</h3>
+                    <p>Use only what you need. Add modules as you grow. Flexible and scalable architecture.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-mobile-alt" style="color: #3b82f6;"></i>
+                    <h3>Mobile-Ready</h3>
+                    <p>Works on tablets and phones. Lightweight for staff at outlets. Log entries on the go.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="case-study">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real-World Success Story</h2>
+                <p>How we transformed operations for a leading food service provider</p>
+            </div>
+
+            <div class="case-study-card">
+                <div class="case-header">
+                    <h3>Food Service Provider - 20+ University Canteens</h3>
+                    <p>Serving 50,000+ meals daily across multiple campuses</p>
+                </div>
+
+                <div class="case-content">
+                    <div class="challenge">
+                        <h4><i class="fas fa-exclamation-circle"></i> The Challenge</h4>
+                        <p style="margin-bottom: 16px; color: #64748b;">When a leading food service provider supplying
+                            20+ university canteens faced operational chaos:</p>
+                        <ul style="list-style: none; margin-top: 12px;">
+                            <li style="padding: 6px 0; color: #64748b;">✗ No visibility into stock across locations</li>
+                            <li style="padding: 6px 0; color: #64748b;">✗ 20-30% food wastage due to poor forecasting
+                            </li>
+                            <li style="padding: 6px 0; color: #64748b;">✗ Manual Excel-based tracking causing errors
+                            </li>
+                            <li style="padding: 6px 0; color: #64748b;">✗ Couldn't calculate true cost per meal</li>
+                            <li style="padding: 6px 0; color: #64748b;">✗ Material movement between outlets untracked
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> The Solution</h4>
+                        <p style="margin-bottom: 16px; color: #64748b;">Metaguard deployed its full-stack inventory
+                            solution:</p>
+                        <ul style="list-style: none; margin-top: 12px;">
+                            <li style="padding: 6px 0; color: #64748b;">✓ Centralized stock control + per-location
+                                tracking</li>
+                            <li style="padding: 6px 0; color: #64748b;">✓ Per-meal consumption linked with raw materials
+                            </li>
+                            <li style="padding: 6px 0; color: #64748b;">✓ Recipe management and cost calculation</li>
+                            <li style="padding: 6px 0; color: #64748b;">✓ Automated forecasting based on consumption
+                            </li>
+                            <li style="padding: 6px 0; color: #64748b;">✓ Mobile app for outlet staff</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="result-box">
+                        <div class="result-value">95%</div>
+                        <div class="result-label">Forecasting accuracy within 60 days</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-value">70%</div>
+                        <div class="result-label">Reduction in wastage</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-value">100%</div>
+                        <div class="result-label">Visibility across locations</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-value">Zero</div>
+                        <div class="result-label">Manual entry errors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Modules -->
+    <section id="modules" class="core-modules">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core System Modules</h2>
+                <p>Complete inventory ecosystem in 7 integrated modules</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Central Inventory -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Central Inventory Management</h3>
+                    <p>Manage centralized purchasing and distribution from one warehouse to many canteens</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Master inventory database</li>
+                        <li><i class="fas fa-check"></i> Purchase order management</li>
+                        <li><i class="fas fa-check"></i> Vendor management</li>
+                        <li><i class="fas fa-check"></i> Stock level alerts</li>
+                        <li><i class="fas fa-check"></i> Automated reordering</li>
+                    </ul>
+                </div>
+
+                <!-- Material Transfer -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-truck-moving"></i>
+                    </div>
+                    <h3>Material Transfer & Approval</h3>
+                    <p>Track and approve material movement to each outlet - instantly</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Transfer requests from outlets</li>
+                        <li><i class="fas fa-check"></i> Multi-level approval workflow</li>
+                        <li><i class="fas fa-check"></i> Real-time tracking</li>
+                        <li><i class="fas fa-check"></i> Delivery confirmation</li>
+                        <li><i class="fas fa-check"></i> Discrepancy management</li>
+                    </ul>
+                </div>
+
+                <!-- Local Procurement -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <h3>Local Procurement Module</h3>
+                    <p>Lightweight mobile module for local staff to log perishables bought daily</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Mobile/tablet interface</li>
+                        <li><i class="fas fa-check"></i> Daily perishable logging</li>
+                        <li><i class="fas fa-check"></i> Local vendor tracking</li>
+                        <li><i class="fas fa-check"></i> Bill upload and verification</li>
+                        <li><i class="fas fa-check"></i> Budget limit enforcement</li>
+                    </ul>
+                </div>
+
+                <!-- Recipe Management -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Recipe & Menu Management</h3>
+                    <p>Link every dish to its exact ingredients with a simple recipe manager</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Recipe database with ingredients</li>
+                        <li><i class="fas fa-check"></i> Portion size specification</li>
+                        <li><i class="fas fa-check"></i> Cost per dish calculation</li>
+                        <li><i class="fas fa-check"></i> Menu planning tools</li>
+                        <li><i class="fas fa-check"></i> Nutritional information</li>
+                    </ul>
+                </div>
+
+                <!-- Consumption Tracking -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Consumption Tracking</h3>
+                    <p>Link meals served to actual consumption for per-plate cost accuracy</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Daily meal count entry</li>
+                        <li><i class="fas fa-check"></i> Auto consumption calculation</li>
+                        <li><i class="fas fa-check"></i> Actual vs theoretical usage</li>
+                        <li><i class="fas fa-check"></i> Wastage identification</li>
+                        <li><i class="fas fa-check"></i> Integration with access control</li>
+                    </ul>
+                </div>
+
+                <!-- Reports & Analytics -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Reports & Analytics</h3>
+                    <p>See what's working - and what's not - across locations with live reports</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Stock status reports</li>
+                        <li><i class="fas fa-check"></i> Consumption analysis</li>
+                        <li><i class="fas fa-check"></i> Cost per meal reports</li>
+                        <li><i class="fas fa-check"></i> Wastage tracking</li>
+                        <li><i class="fas fa-check"></i> Demand forecasting</li>
+                        <li><i class="fas fa-check"></i> Vendor performance</li>
+                    </ul>
+                </div>
+
+                <!-- Integration Module -->
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>System Integration</h3>
+                    <p>Ready to integrate with student access systems and accounting software</p>
+                    <ul class="module-features">
+                        <li><i class="fas fa-check"></i> Student attendance integration</li>
+                        <li><i class="fas fa-check"></i> RFID/biometric system link</li>
+                        <li><i class="fas fa-check"></i> Accounting software sync</li>
+                        <li><i class="fas fa-check"></i> ERP integration</li>
+                        <li><i class="fas fa-check"></i> Custom API support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Key Benefits</h2>
+                <p>Transform your food service operations</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Complete Visibility</h3>
+                    <p>Real-time view of stock across all locations. Know what's available, what's moving, and what
+                        needs attention at any moment.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>95% Forecast Accuracy</h3>
+                    <p>AI-powered demand forecasting based on historical consumption. Predict requirements with 95%
+                        accuracy within 60 days of usage.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-trash-can"></i>
+                    <h3>Reduce Wastage</h3>
+                    <p>Prevent food spoilage with expiry alerts. Optimize stock levels based on actual consumption
+                        patterns. Save 60-70% on wastage.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-indian-rupee-sign"></i>
+                    <h3>Accurate Costing</h3>
+                    <p>Know the true cost per meal. Link recipes with actual consumption. Identify profit leaks and
+                        optimize pricing strategies.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Time Savings</h3>
+                    <p>Eliminate manual Excel entries and paper registers. Automated stock updates and reports save
+                        hours of staff time daily.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-check"></i>
+                    <h3>Prevent Pilferage</h3>
+                    <p>Track every material movement with approval workflows. Audit trail for all transactions. Identify
+                        and prevent stock theft.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-mobile-screen"></i>
+                    <h3>Mobile Accessibility</h3>
+                    <p>Works even in low-infrastructure setups. Staff can log entries from tablets or phones. No complex
+                        training needed.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>Smart Alerts</h3>
+                    <p>Email/SMS notifications for low stock, expiring items, pending approvals, and unusual consumption
+                        patterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Advanced Features</h2>
+                <p>Everything you need for complete inventory control</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-barcode"></i>
+                    <h3>Barcode/QR Support</h3>
+                    <p>Generate barcodes for items. Quick scanning for stock in/out. Faster operations with minimal
+                        errors.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Expiry Management</h3>
+                    <p>Track batch numbers and expiry dates. FEFO (First Expired First Out) alerts. Prevent serving
+                        expired items.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users-gear"></i>
+                    <h3>Role-Based Access</h3>
+                    <p>Different permissions for admin, managers, and staff. Control who can approve, transfer, or view
+                        data.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-excel"></i>
+                    <h3>Easy Data Import</h3>
+                    <p>Import existing inventory data from Excel. Bulk upload of items, vendors, recipes. Quick
+                        migration from old systems.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Multi-Language</h3>
+                    <p>Interface available in English, Hindi, and regional languages. Easy for diverse staff across
+                        locations.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Custom Reports</h3>
+                    <p>Build your own reports with drag-drop interface. Schedule automated email delivery. Export to
+                        Excel/PDF.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-arrow-up"></i>
+                    <h3>Automatic Backups</h3>
+                    <p>Daily automated backups to cloud. Disaster recovery built-in. Your data is always safe and
+                        accessible.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Dedicated Support</h3>
+                    <p>Phone, email, and remote assistance. Training videos and documentation. We're here to help you
+                        succeed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="solution-overview" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Perfect For</h2>
+                <p>Designed for food service operations across sectors</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-graduation-cap" style="color: #3b82f6;"></i>
+                    <h3>Educational Institutions</h3>
+                    <p>Schools, colleges, universities with multiple canteens and hostels serving thousands of meals
+                        daily.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-utensils" style="color: #3b82f6;"></i>
+                    <h3>Food Service Contractors</h3>
+                    <p>Companies managing cafeterias across multiple client locations with centralized procurement.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-building" style="color: #3b82f6;"></i>
+                    <h3>Corporate Cafeterias</h3>
+                    <p>Employee dining facilities in offices, factories, and business parks with subsidized meal
+                        programs.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-hospital" style="color: #3b82f6;"></i>
+                    <h3>Healthcare Facilities</h3>
+                    <p>Hospital kitchens managing patient diets, staff canteens, and therapeutic meal preparation.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-hotel" style="color: #3b82f6;"></i>
+                    <h3>Hotels & Resorts</h3>
+                    <p>Food & beverage operations with multiple outlets managing centralized inventory and costing.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-building-columns" style="color: #3b82f6;"></i>
+                    <h3>Government Institutions</h3>
+                    <p>Military messes, government canteens, and institutional kitchens with strict budgeting
+                        requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation -->
+    <section class="core-modules">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Implementation</h2>
+                <p>Live in 2-3 weeks with minimal disruption</p>
+            </div>
+            <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Week 1: Planning</h3>
+                    <p>Understanding your operations, locations, current processes, and customization needs.</p>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Week 2: Setup</h3>
+                    <p>Data migration, system configuration, user creation, and module activation based on your needs.
+                    </p>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Week 3: Training</h3>
+                    <p>Staff training at all levels, documentation handover, and go-live with on-site support.</p>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Week 4: Optimize</h3>
+                    <p>Fine-tuning based on usage, addressing queries, and ensuring smooth operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Metaguard -->
+    <section class="solution-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Metaguard?</h2>
+                <p>Proven expertise in inventory management</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Industry Expertise</h3>
+                    <p>Built specifically for food service industry. Understands your challenges. Proven with 20+ large
+                        deployments.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h3>Modular & Scalable</h3>
+                    <p>Start with what you need. Add modules as you grow. Works for 1 location or 100+ locations
+                        seamlessly.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile-First Design</h3>
+                    <p>Works on any device. No expensive hardware needed. Staff can use their own phones/tablets.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud-Based</h3>
+                    <p>Access from anywhere. No server maintenance. Automatic updates. Bank-grade security.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Dedicated Support</h3>
+                    <p>Implementation support, training, and ongoing assistance. We're with you at every step.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-indian-rupee-sign"></i>
+                    <h3>Affordable Pricing</h3>
+                    <p>Transparent pricing with no hidden costs. Pay only for active locations. ROI in 6 months.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seamless Integration</h2>
+                <p>Connect with your existing systems</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-user-clock"></i>
+                    <h3>Attendance Systems</h3>
+                    <p>Link with RFID/biometric attendance. Automatic meal count based on who's present on campus.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Student Management</h3>
+                    <p>Integrate with ERP/LMS. Track meals by student category, hostel, or department.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Accounting Software</h3>
+                    <p>Sync with Tally, SAP, QuickBooks. Automatic journal entries for purchases and consumption.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Payment Systems</h3>
+                    <p>Link with meal card or cashless payment systems. Track revenue alongside consumption.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Communication Tools</h3>
+                    <p>Email/SMS gateway integration for alerts, reports, and approval notifications.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-plug"></i>
+                    <h3>Custom APIs</h3>
+                    <p>RESTful APIs for any custom integration. Webhook support for real-time data sync.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial / Stats -->
+    <section class="case-study">
+        <div class="container">
+            <div class="section-header">
+                <h2>Proven Results</h2>
+                <p>Numbers that speak for themselves</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card" style="border-left-color: #10b981; text-align: center;">
+                    <i class="fas fa-building" style="color: #10b981;"></i>
+                    <h3 style="font-size: 48px; color: #10b981; margin-bottom: 8px;">25+</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Organizations</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #10b981; text-align: center;">
+                    <i class="fas fa-store" style="color: #10b981;"></i>
+                    <h3 style="font-size: 48px; color: #10b981; margin-bottom: 8px;">100+</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Locations Managed</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #10b981; text-align: center;">
+                    <i class="fas fa-utensils" style="color: #10b981;"></i>
+                    <h3 style="font-size: 48px; color: #10b981; margin-bottom: 8px;">1M+</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Meals Tracked Daily</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #10b981; text-align: center;">
+                    <i class="fas fa-percent" style="color: #10b981;"></i>
+                    <h3 style="font-size: 48px; color: #10b981; margin-bottom: 8px;">70%</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Average Wastage Reduction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Eliminate Manual Errors?</h2>
+            <p>Transform your inventory management with AI-powered forecasting and real-time tracking</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Schedule Demo
+                </a>
+                <a href="#pricing" class="btn-secondary">
+                    <i class="fas fa-file-invoice-dollar"></i> Get Pricing
+                </a>
+            </div>
+            <p style="margin-top: 30px; font-size: 16px;">Join 25+ organizations already saving costs with smart
+                inventory control</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>MetaGuard</h3>
+                <p>AI-powered vision intelligence that transforms surveillance into actionable business insights.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+                <p style="font-size: 0.875rem; margin-top: 1rem;">Get the latest news, articles, and resources delivered
+                    weekly.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Products</h4>
+                <ul class="footer-links">
+                    <li><a href="smart_attendance_page.html">Smart Attendance</a></li>
+                    <li><a href="visitor_management_page.html">Visitor Management</a></li>
+                    <li><a href="transport_management_page.html">Transport Management</a></li>
+                    <li><a href="cashless_payments_page.html">Cashless Campus</a></li>
+                    <li><a href="library_management_page.html">Library Management</a></li>
+                    <li><a href="business_intelligence_suite.html">Complete Suite</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <ul class="footer-links">
+                    <li><a href="metaguard_education_page.html">Education</a></li>
+                    <li><a href="metaguard_corporate_page.html">Corporates</a></li>
+                    <li><a href="metaguard_healthcare_page.html">Healthcare</a></li>
+                    <li><a href="#">Government</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Videos & Webinars</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Download Brochure</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 MetaGuard. All rights reserved. | Security & Compliance | Privacy Policy | Terms of Service
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.problem-card, .module-card, .benefit-card, .feature-card, .case-study-card, .result-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

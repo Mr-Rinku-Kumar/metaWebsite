@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashless Digital Payment Solution | Metaguard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation */
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 1rem 0;
+            min-width: 200px;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #475569;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8fafc;
+            color: #3b82f6;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #0f172a;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(139, 92, 246, 0.15), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: #cbd5e1;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .hero .tagline {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-props {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .value-prop-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .value-prop-item i {
+            font-size: 24px;
+            color: #10b981;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problems {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #ef4444;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card i {
+            font-size: 48px;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Solution Overview */
+        .solution-overview {
+            background: white;
+        }
+
+        .solution-highlight {
+            background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%);
+            padding: 60px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .solution-highlight h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .solution-highlight p {
+            font-size: 20px;
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+        }
+
+        .how-it-works .section-header h2,
+        .how-it-works .section-header p {
+            color: white;
+        }
+
+        .how-it-works .section-header p {
+            color: #cbd5e1;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .component-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .component-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .component-card i {
+            font-size: 64px;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .component-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .component-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        /* Features */
+        .features {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card i {
+            font-size: 48px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: white;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .case-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .case-header h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .case-header p {
+            font-size: 18px;
+            color: #64748b;
+        }
+
+        .case-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .challenge,
+        .solution {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .challenge {
+            border-left: 4px solid #ef4444;
+        }
+
+        .solution {
+            border-left: 4px solid #10b981;
+        }
+
+        .challenge h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .solution h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge ul,
+        .solution ul {
+            list-style: none;
+        }
+
+        .challenge li,
+        .solution li {
+            padding: 8px 0;
+            color: #64748b;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .challenge li:before {
+            content: "✗";
+            color: #ef4444;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .solution li:before {
+            content: "✓";
+            color: #10b981;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .result-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 4px solid #10b981;
+        }
+
+        .result-value {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Benefits */
+        .benefits {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 4px solid #10b981;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .benefit-card i {
+            font-size: 48px;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: white;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .use-case-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .use-case-card .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .use-case-card .icon-wrapper i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .use-case-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .use-case-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Advanced Features */
+        .advanced-features {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+        }
+
+        .advanced-features .section-header h2,
+        .advanced-features .section-header p {
+            color: white;
+        }
+
+        .advanced-features .section-header p {
+            color: #cbd5e1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #e0e7ff;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: #3b82f6;
+        }
+
+        .cta-section .btn-primary:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: white;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .subtitle {
+                font-size: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .case-content {
+                grid-template-columns: 1fr;
+            }
+
+            .value-props {
+                gap: 20px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="home.html" class="logo">
+                <div class="logo-icon">M</div>
+                MetaGuard
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">Products</a>
+                    <div class="dropdown-menu">
+                        <a href="smart_attendance_page.html">Smart Attendance</a>
+                        <a href="visitor_management_page.html">Visitor Management</a>
+                        <a href="transport_management_page.html">Transport Management</a>
+                        <a href="cashless_payments_page.html">Cashless Campus</a>
+                        <a href="library_management_page.html">Library Management</a>
+                        <a href="business_intelligence_suite.html">Complete Suite</a>
+                    </div>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="#">Industries</a>
+                    <div class="dropdown-menu">
+                        <a href="metaguard_education_page.html">Education</a>
+                        <a href="metaguard_corporate_page.html">Corporates</a>
+                        <a href="metaguard_healthcare_page.html">Healthcare</a>
+                        <a href="#">Government</a>
+                    </div>
+                </li>
+                <li><a href="#">Case Studies</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#">Blog</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">API Reference</a>
+                        <a href="#">Videos & Webinars</a>
+                    </div>
+                </li>
+                <li><a href="#" class="nav-cta">Get Started</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content animate-in">
+            <h1>Go Cashless, Go Digital<br>Eliminate Cash Chaos</h1>
+            <p class="subtitle">Plug-and-Play Digital Payment Platform</p>
+            <p class="tagline">Perfect for canteens, events, fests, and outdoor gatherings. No infrastructure needed.
+                Works offline. Instant setup.</p>
+
+            <div class="value-props">
+                <div class="value-prop-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Faster Transactions</span>
+                </div>
+                <div class="value-prop-item">
+                    <i class="fas fa-eye"></i>
+                    <span>Transparent Collections</span>
+                </div>
+                <div class="value-prop-item">
+                    <i class="fas fa-smile"></i>
+                    <span>Happier Customers</span>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#demo" class="btn-primary">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <i class="fas fa-credit-card"></i> See Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Problem with Cash-Driven Events</h2>
+                <p>Cash creates chaos at high-footfall events and venues</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <i class="fas fa-hourglass-half"></i>
+                    <h3>Slow Transactions</h3>
+                    <p>Long queues at counters as staff struggles with cash handling, change giving, and manual billing
+                        during peak hours.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-hand-holding-dollar"></i>
+                    <h3>Cash Leakage</h3>
+                    <p>Revenue leaks through unaccounted cash, missing change, theft, and no way to track what's
+                        actually collected.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Reconciliation Nightmare</h3>
+                    <p>Hours spent counting cash, matching bills, finding discrepancies. No real-time visibility into
+                        collections.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-users-slash"></i>
+                    <h3>Poor Customer Experience</h3>
+                    <p>Frustrated customers wait in long lines, carry exact change, and face transaction errors during
+                        events.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-file-excel"></i>
+                    <h3>No Data Insights</h3>
+                    <p>Impossible to know what's selling, peak hours, popular items, or customer behavior patterns.</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Security Risks</h3>
+                    <p>Cash handling creates theft risk, counterfeit currency issues, and safety concerns for staff and
+                        organizers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Overview -->
+    <section class="solution-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Metaguard Solution</h2>
+                <p>A complete digital payment ecosystem designed for events</p>
+            </div>
+
+            <div class="solution-highlight">
+                <h3>Plug-and-Play Digital Payment Platform</h3>
+                <p>Designed specifically for high-footfall, infrastructure-light environments like university canteens,
+                    club events, fests, social gatherings, and outdoor venues. No Wi-Fi needed. No complex setup. Just
+                    plug in and start accepting digital payments in minutes.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-check-circle" style="color: #3b82f6;"></i>
+                    <h3>Zero Infrastructure</h3>
+                    <p>Works perfectly in outdoor events, remote locations, and venues with no internet connectivity</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-bolt" style="color: #3b82f6;"></i>
+                    <h3>Instant Setup</h3>
+                    <p>Deploy the entire payment system in under 30 minutes. No technical expertise required</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6;">
+                    <i class="fas fa-sync" style="color: #3b82f6;"></i>
+                    <h3>Auto-Sync</h3>
+                    <p>All transactions sync automatically when internet becomes available. No data loss ever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Simple 3-component ecosystem</p>
+            </div>
+            <div class="components-grid">
+                <div class="component-card">
+                    <div class="component-number">1</div>
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Smart Cards / QR Codes</h3>
+                    <p>Issue prepaid RFID cards or QR codes to customers. They load money once and use for all purchases
+                        throughout the event.</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-number">2</div>
+                    <i class="fas fa-mobile-screen-button"></i>
+                    <h3>Android POS App</h3>
+                    <p>Vendors use simple Android app on tablets/phones. Tap card or scan QR to complete payment. Works
+                        100% offline—no Wi-Fi or LAN required.</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-number">3</div>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Admin Dashboard</h3>
+                    <p>Monitor transactions by counter, user, or time with automated reconciliation. Generate reports
+                        instantly from web dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core Features</h2>
+                <p>Everything you need for cashless operations</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-wifi-slash"></i>
+                    <h3>Offline Mode</h3>
+                    <p>Complete offline capability. POS works without internet. Transactions sync automatically when
+                        connectivity returns.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h3>Tap & Pay</h3>
+                    <p>Lightning-fast contactless payments. Just tap RFID card or scan QR code. Transaction complete in
+                        under 2 seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Prepaid Wallet</h3>
+                    <p>Customers load money once at entry. Use same card/QR for all vendors throughout the event. Check
+                        balance anytime.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Android Ready</h3>
+                    <p>Works on any Android phone or tablet. No expensive POS hardware needed. Download app and start
+                        immediately.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Real-Time Dashboard</h3>
+                    <p>Live monitoring of all transactions. See sales by vendor, time, item. Know exactly what's
+                        happening across all counters.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Auto Reconciliation</h3>
+                    <p>Automated settlement at end of event. No manual counting or matching. Instant reconciliation
+                        reports for all vendors.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-receipt"></i>
+                    <h3>Digital Receipts</h3>
+                    <p>Every transaction logged digitally. Customers can view transaction history. Complete audit trail
+                        always available.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users-gear"></i>
+                    <h3>Multi-Vendor Support</h3>
+                    <p>Manage unlimited vendors/counters. Track performance individually. Settle payments separately for
+                        each vendor.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>Secure & Encrypted</h3>
+                    <p>Bank-grade encryption for all transactions. Card/QR data secured. Prevent fraud and unauthorized
+                        access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="case-study">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real-World Success Story</h2>
+                <p>How we transformed payment operations for a premium club</p>
+            </div>
+
+            <div class="case-study-card">
+                <div class="case-header">
+                    <h3>Elite Club Outdoor Event</h3>
+                    <p>500+ members, multiple food/beverage counters, 3-day event</p>
+                </div>
+
+                <div class="case-content">
+                    <div class="challenge">
+                        <h4><i class="fas fa-exclamation-circle"></i> The Challenge</h4>
+                        <ul>
+                            <li>Long queues causing member frustration</li>
+                            <li>Cash handling slowing down service</li>
+                            <li>No visibility into collections until event end</li>
+                            <li>Revenue leakage and reconciliation issues</li>
+                            <li>Poor data on member preferences</li>
+                            <li>Manual billing errors creating disputes</li>
+                        </ul>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> The Solution</h4>
+                        <ul>
+                            <li>Issued prepaid RFID cards to all members</li>
+                            <li>Deployed Android POS at all 12 counters</li>
+                            <li>Worked perfectly in outdoor setting</li>
+                            <li>Real-time monitoring for organizers</li>
+                            <li>Automated reconciliation for all vendors</li>
+                            <li>Complete transaction data and analytics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="result-box">
+                        <div class="result-value">70%</div>
+                        <div class="result-label">Faster transactions</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-value">100%</div>
+                        <div class="result-label">Accurate collections</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-value">Zero</div>
+                        <div class="result-label">Revenue leakage</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-value">95%</div>
+                        <div class="result-label">Member satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Organizations Love It</h2>
+                <p>Real benefits for event organizers and customers</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Faster Service</h3>
+                    <p>3x faster transactions compared to cash. Eliminate long queues. Serve more customers in less
+                        time. Increase throughput and revenue.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Revenue Visibility</h3>
+                    <p>Real-time insights into collections. Know exactly what's selling. Track performance by counter,
+                        time, and item. Data-driven decisions.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Zero Cash Handling</h3>
+                    <p>Eliminate cash-related risks. No theft concerns. No counterfeit currency. No missing change.
+                        Complete security and control.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Auto Reconciliation</h3>
+                    <p>Instant settlement at event end. No manual counting or matching. Automated vendor payouts. Save
+                        hours of reconciliation work.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Better Customer Experience</h3>
+                    <p>No need to carry cash or exact change. Fast checkout. Digital receipts. Check balance anytime.
+                        Happier, more satisfied customers.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Member Engagement</h3>
+                    <p>Track member spending patterns. Offer personalized promotions. Build loyalty programs. Understand
+                        preferences and behavior.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>Compliance Ready</h3>
+                    <p>Complete digital audit trail. GST-compliant invoicing. Tax-ready reports. Transparent operations
+                        for regulators and auditors.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-indian-rupee-sign"></i>
+                    <h3>Cost Savings</h3>
+                    <p>No cash management costs. Reduce staff time on reconciliation. Prevent revenue leakage. Lower
+                        operational overhead.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Perfect For</h2>
+                <p>Designed for high-volume, infrastructure-light environments</p>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>College & School Canteens</h3>
+                    <p>Replace cash transactions in cafeterias. Issue student ID cards with payment capability. Track
+                        spending limits. Parent monitoring features.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-champagne-glasses"></i>
+                    </div>
+                    <h3>Elite Clubs & Gatherings</h3>
+                    <p>Member events, parties, and social functions. Seamless cashless experience for premium venues.
+                        Track member spending and preferences.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-calendar-days"></i>
+                    </div>
+                    <h3>Event Management Companies</h3>
+                    <p>Corporate events, exhibitions, conferences. Multiple vendor management. Quick setup and teardown.
+                        Professional payment experience.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Campus Fests & Carnivals</h3>
+                    <p>College festivals, cultural events, sports meets. Handle thousands of students. Outdoor-ready. No
+                        infrastructure dependency.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-place-of-worship"></i>
+                    </div>
+                    <h3>Religious & Community Events</h3>
+                    <p>Temple festivals, community gatherings, religious celebrations. Manage donations and prasad
+                        sales. Transparent collections.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Food Courts & Markets</h3>
+                    <p>Weekly markets, food truck festivals, pop-up events. Multi-vendor coordination. Centralized
+                        payment collection.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Corporate Cafeterias</h3>
+                    <p>Employee lunch programs, office canteens. Subsidized meal tracking. Department-wise expense
+                        allocation.</p>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Sports Venues & Stadiums</h3>
+                    <p>Concession stands, merchandise counters. Handle match-day rush. Fast transactions during peak
+                        moments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Features -->
+    <section class="advanced-features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Next-Level Capabilities</h2>
+                <p>Advanced features to unlock more value</p>
+            </div>
+            <div class="components-grid">
+                <div class="component-card">
+                    <i class="fas fa-gift"></i>
+                    <h3>Loyalty Programs</h3>
+                    <p>Reward frequent customers with points, discounts, and cashback. Build engagement through
+                        gamification.</p>
+                </div>
+                <div class="component-card">
+                    <i class="fas fa-tags"></i>
+                    <h3>Dynamic Pricing</h3>
+                    <p>Happy hour discounts, peak pricing, special offers. Change prices in real-time across all
+                        counters instantly.</p>
+                </div>
+                <div class="component-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Advanced Analytics</h3>
+                    <p>Customer behavior analysis, popular items, peak hours, revenue trends. Make data-driven business
+                        decisions.</p>
+                </div>
+                <div class="component-card">
+                    <i class="fas fa-box"></i>
+                    <h3>Inventory Management</h3>
+                    <p>Track stock levels in real-time. Auto-alerts for low inventory. Purchase order generation.
+                        Wastage tracking.</p>
+                </div>
+                <div class="component-card">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Multiple Payment Options</h3>
+                    <p>RFID cards, QR codes, NFC payments, UPI integration. Give customers choice in payment methods.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <i class="fas fa-mobile-screen"></i>
+                    <h3>Customer Mobile App</h3>
+                    <p>Customers check balance, view transactions, add money, and get notifications—all from their
+                        smartphones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Deployment Options</h2>
+                <p>Flexible solutions for every scenario</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card" style="border-left-color: #10b981;">
+                    <i class="fas fa-clock" style="color: #10b981;"></i>
+                    <h3>Quick Deploy (Same Day)</h3>
+                    <p>For single-day events. We bring equipment, set up in 30 minutes, manage operations, collect
+                        equipment at end.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #10b981;">
+                    <i class="fas fa-calendar-week" style="color: #10b981;"></i>
+                    <h3>Event Rental (Weekly/Monthly)</h3>
+                    <p>Rent the entire system for your event duration. Full support included. Setup, training, and
+                        teardown handled.</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #10b981;">
+                    <i class="fas fa-building" style="color: #10b981;"></i>
+                    <h3>Permanent Installation</h3>
+                    <p>For canteens and permanent venues. Own the hardware. Unlimited usage. Monthly software
+                        subscription.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Metaguard -->
+    <section class="solution-overview" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Metaguard?</h2>
+                <p>Proven expertise in cashless solutions</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Instant Setup</h3>
+                    <p>Plug-and-play solution ready in under 30 minutes. No technical knowledge required. We handle
+                        everything.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Outdoor Ready</h3>
+                    <p>Designed specifically for high-volume outdoor events. Works in remote locations with zero
+                        infrastructure.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Full Support</h3>
+                    <p>On-site support during events. 24/7 helpline. Training included. We're with you every step.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-indian-rupee-sign"></i>
+                    <h3>Affordable Pricing</h3>
+                    <p>Transparent pricing with no hidden costs. Flexible rental and purchase options. ROI from day one.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Proven Track Record</h3>
+                    <p>Successfully deployed at 100+ events. Trusted by colleges, clubs, and event companies nationwide.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Customizable</h3>
+                    <p>White-label solutions available. Custom branding. Integration with your existing systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Process -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How We Deploy</h2>
+                <p>Seamless setup in 4 simple steps</p>
+            </div>
+            <div class="components-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="component-card">
+                    <div class="component-number">1</div>
+                    <h3>Planning</h3>
+                    <p>Discuss your event requirements, number of counters, expected footfall, and duration</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-number">2</div>
+                    <h3>Setup</h3>
+                    <p>We bring equipment, install POS at counters, configure system, and test everything</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-number">3</div>
+                    <h3>Training</h3>
+                    <p>Quick 15-minute training for staff on using POS app. Issue cards/QR codes to customers</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-number">4</div>
+                    <h3>Go Live</h3>
+                    <p>Start accepting payments. We monitor remotely. On-site support available throughout event</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial / Stats -->
+    <section class="case-study">
+        <div class="container">
+            <div class="section-header">
+                <h2>By The Numbers</h2>
+                <p>Real impact across hundreds of events</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card" style="border-left-color: #3b82f6; text-align: center;">
+                    <i class="fas fa-calendar-check" style="color: #3b82f6;"></i>
+                    <h3 style="font-size: 48px; color: #3b82f6; margin-bottom: 8px;">100+</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Successful Events</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6; text-align: center;">
+                    <i class="fas fa-users" style="color: #3b82f6;"></i>
+                    <h3 style="font-size: 48px; color: #3b82f6; margin-bottom: 8px;">50K+</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Customers Served</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6; text-align: center;">
+                    <i class="fas fa-receipt" style="color: #3b82f6;"></i>
+                    <h3 style="font-size: 48px; color: #3b82f6; margin-bottom: 8px;">1M+</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Transactions Processed</p>
+                </div>
+                <div class="problem-card" style="border-left-color: #3b82f6; text-align: center;">
+                    <i class="fas fa-star" style="color: #3b82f6;"></i>
+                    <h3 style="font-size: 48px; color: #3b82f6; margin-bottom: 8px;">95%</h3>
+                    <p style="font-size: 18px; font-weight: 600;">Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Go Cashless?</h2>
+            <p>Eliminate cash chaos and transform your event payment experience today</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Book a Demo
+                </a>
+                <a href="#pricing" class="btn-secondary">
+                    <i class="fas fa-file-invoice-dollar"></i> Get Pricing
+                </a>
+            </div>
+            <p style="margin-top: 30px; font-size: 16px;">Perfect for your next event, fest, or canteen operation</p>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>MetaGuard</h3>
+                <p>AI-powered vision intelligence that transforms surveillance into actionable business insights.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+                <p style="font-size: 0.875rem; margin-top: 1rem;">Get the latest news, articles, and resources delivered
+                    weekly.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Products</h4>
+                <ul class="footer-links">
+                    <li><a href="smart_attendance_page.html">Smart Attendance</a></li>
+                    <li><a href="visitor_management_page.html">Visitor Management</a></li>
+                    <li><a href="transport_management_page.html">Transport Management</a></li>
+                    <li><a href="cashless_payments_page.html">Cashless Campus</a></li>
+                    <li><a href="library_management_page.html">Library Management</a></li>
+                    <li><a href="business_intelligence_suite.html">Complete Suite</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <ul class="footer-links">
+                    <li><a href="metaguard_education_page.html">Education</a></li>
+                    <li><a href="metaguard_corporate_page.html">Corporates</a></li>
+                    <li><a href="metaguard_healthcare_page.html">Healthcare</a></li>
+                    <li><a href="#">Government</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Videos & Webinars</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Download Brochure</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 MetaGuard. All rights reserved. | Security & Compliance | Privacy Policy | Terms of Service
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.problem-card, .feature-card, .benefit-card, .use-case-card, .component-card, .case-study-card, .result-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
